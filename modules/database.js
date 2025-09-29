@@ -1,5 +1,13 @@
 import sqlite3 from 'sqlite3';
 import { log, logError } from './tools.js';
+import fs from 'fs';
+
+if (!fs.existsSync('./db')) {
+    fs.mkdirSync('./db');
+}
+if (!fs.existsSync('./db/database.db')) {
+    fs.writeFileSync('./db/database.db', '');
+}
 
 const db = new sqlite3.Database('./db/database.db', (err) => {
     if (err) {
